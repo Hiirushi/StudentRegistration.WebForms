@@ -12,6 +12,9 @@
     <link
         href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
         rel="stylesheet" />
+
+    <link rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
 </head>
 <body>
     <form id="studentDetailsForm" runat="server">
@@ -124,23 +127,27 @@
 
                             <asp:TemplateField HeaderText="Actions">
                                 <ItemTemplate>
-                                    <asp:Button
+                                    <asp:LinkButton
                                         ID="btnEdit"
                                         runat="server"
-                                        Text="Edit"
                                         CommandName="EditStudent"
                                         CssClass="btn btn-primary btn-sm"
                                         CommandArgument='<%# Eval("StudentID") %>'
-                                        CausesValidation="false" />
+                                        CausesValidation="false" 
+                                        ToolTip="Edit Student">
+                                    <i class="bi bi-pencil-square"></i>
+                                        </asp:LinkButton>
 
-                                    <asp:Button
+                                    <asp:LinkButton
                                         ID="btnDelete"
                                         runat="server"
-                                        Text="Delete"
                                         CommandName="ConfirmDelete"
                                         CssClass="btn btn-danger btn-sm"
                                         CommandArgument='<%# Eval("StudentID") %>'
-                                        CausesValidation="false" />
+                                        CausesValidation="false" 
+                                        ToolTip="Delete Student">
+                                    <i class="bi bi-trash"></i>
+                                        </asp:LinkButton>
                                 </ItemTemplate>
                             </asp:TemplateField>
                         </Columns>
