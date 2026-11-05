@@ -94,6 +94,18 @@ namespace StudentRegistration.WebForms
         }
         protected void btnUpdateStudent_Click(object sender, EventArgs e)
         {
+            Page.Validate("EditStudent");
+            if (!Page.IsValid)
+            {
+                ScriptManager.RegisterStartupScript(
+                    this,
+                    GetType(),
+                    "ShowEditModal",
+                    "bootstrap.Modal.getOrCreateInstance(document.getElementById('editStudentModal')).show();",
+                    true
+            );
+                return;
+            }
             try
             {
                 DateTime? dateOfBirth = null;

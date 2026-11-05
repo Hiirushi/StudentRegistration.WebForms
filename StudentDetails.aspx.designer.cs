@@ -96,6 +96,15 @@ namespace StudentRegistration.WebForms
         protected global::System.Web.UI.WebControls.TextBox txtEditFirstName;
 
         /// <summary>
+        /// rfvEditFirstName control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvEditFirstName;
+
+        /// <summary>
         /// txtEditLastName control.
         /// </summary>
         /// <remarks>
@@ -103,6 +112,15 @@ namespace StudentRegistration.WebForms
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.TextBox txtEditLastName;
+
+        /// <summary>
+        /// rfrEditLastName control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfrEditLastName;
 
         /// <summary>
         /// txtEditAddress control.
@@ -123,6 +141,15 @@ namespace StudentRegistration.WebForms
         protected global::System.Web.UI.WebControls.TextBox txtEditDateOfBirth;
 
         /// <summary>
+        /// cvEditDateOfBirth control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.CompareValidator cvEditDateOfBirth;
+
+        /// <summary>
         /// ddlEditCourse control.
         /// </summary>
         /// <remarks>
@@ -130,6 +157,15 @@ namespace StudentRegistration.WebForms
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.DropDownList ddlEditCourse;
+
+        /// <summary>
+        /// rfvEditCourse control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.RequiredFieldValidator rfvEditCourse;
 
         /// <summary>
         /// btnUpdateStudent control.

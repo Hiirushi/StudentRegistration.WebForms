@@ -16,27 +16,27 @@
 <body>
     <form id="form2" runat="server">
         <asp:ScriptManager ID="ScriptManager1" runat="server">
-</asp:ScriptManager>
+        </asp:ScriptManager>
         <div class="container mt-5">
             <div class="d-flex align-items-center mb-4">
                 <h3>Student Details</h3>
                 <div class="d-flex gap-2 ms-auto">
-                <asp:Button
-                    ID="btnAddStudent"
-                    runat="server"
-                    Text="Add New Student"
-                    CssClass="btn btn-primary"
-                    CausesValidation="false"
-                    OnClick="btnAddStudent_Click" />
+                    <asp:Button
+                        ID="btnAddStudent"
+                        runat="server"
+                        Text="Add New Student"
+                        CssClass="btn btn-primary"
+                        CausesValidation="false"
+                        OnClick="btnAddStudent_Click" />
 
-                <asp:Button
-                    ID="btnGenerateReport"
-                    runat="server"
-                    Text="Generate Report"
-                    CssClass="btn btn-success"
-                    CausesValidation="False"
-                    OnClick="btnGenerateReport_Click" />
-                    </div>
+                    <asp:Button
+                        ID="btnGenerateReport"
+                        runat="server"
+                        Text="Generate Report"
+                        CssClass="btn btn-success"
+                        CausesValidation="False"
+                        OnClick="btnGenerateReport_Click" />
+                </div>
             </div>
 
             <div class="card-bodu p-4">
@@ -81,6 +81,7 @@
                                         runat="server"
                                         Text="Edit"
                                         CommandName="EditStudent"
+                                        CssClass="btn btn-primary btn-sm"
                                         CommandArgument='<%# Eval("StudentID") %>'
                                         CausesValidation="false" />
 
@@ -89,6 +90,7 @@
                                         runat="server"
                                         Text="Delete"
                                         CommandName="ConfirmDelete"
+                                        CssClass="btn btn-danger btn-sm"
                                         CommandArgument='<%# Eval("StudentID") %>'
                                         CausesValidation="false" />
                                 </ItemTemplate>
@@ -128,6 +130,14 @@
                                             ID="txtEditFirstName"
                                             runat="server"
                                             CssClass="form-control" />
+                                        <asp:RequiredFieldValidator
+                                            ID="rfvEditFirstName"
+                                            runat="server"
+                                            ControlToValidate="txtEditFirstName"
+                                            ErrorMessage="First name is required"
+                                            ForeColor="Red"
+                                            Display="Dynamic"
+                                            ValidationGroup="EditStudent"/>
                                     </div>
 
                                     <div class="mb-3">
@@ -136,6 +146,14 @@
                                             ID="txtEditLastName"
                                             runat="server"
                                             CssClass="form-control" />
+                                        <asp:RequiredFieldValidator
+                                            ID="rfrEditLastName"
+                                            runat="server"
+                                            ControlToValidate="txtEditLastName"
+                                            ErrorMessage="Last name is required"
+                                            ForeColor="Red"
+                                            Display="Dynamic"
+                                            ValidationGroup="EditStudent"/>
                                     </div>
 
                                     <div class="mb-3">
@@ -153,6 +171,16 @@
                                             runat="server"
                                             TextMode="Date"
                                             CssClass="form-control" />
+                                        <asp:CompareValidator
+                                            ID="cvEditDateOfBirth"
+                                            runat="server"
+                                            ControlToValidate="txtEditDateOfBirth"
+                                            Operator="DataTypeCheck"
+                                            Type="Date"
+                                            ErrorMessage="Enter a Valid date"
+                                            ForeColor="Red"
+                                            Display="Dynamic"
+                                            ValidationGroup="EditStudent" />
                                     </div>
 
                                     <div class="mb-3">
@@ -161,6 +189,15 @@
                                             ID="ddlEditCourse"
                                             runat="server"
                                             CssClass="form-select" />
+                                        <asp:RequiredFieldValidator
+                                            ID="rfvEditCourse"
+                                            runat="server"
+                                            ControlToValidate="ddlEditCourse"
+                                            InitialValue="0"
+                                            ErrorMessage="Please select a course"
+                                            ForeColor="Red"
+                                            Display="Dynamic"
+                                            ValidationGroup="EditStudent" />
                                     </div>
 
                                     <div class="modal-footer">
@@ -177,7 +214,8 @@
                                             Text="Update"
                                             CssClass="btn btn-primary"
                                             OnClick="btnUpdateStudent_Click"
-                                            CausesValidation="false" />
+                                            CausesValidation="true"
+                                            ValidationGroup="EditStudent" />
                                     </div>
 
                                 </div>
