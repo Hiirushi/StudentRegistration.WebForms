@@ -341,6 +341,7 @@
     <Content Include="StudentReportDataSet.xsc">
       <DependentUpon>StudentReportDataSet.xsd</DependentUpon>
     </Content>
+    <Content Include="README.md" />
     <None Include="StudentReportDataSet.xsd">
       <SubType>Designer</SubType>
       <Generator>MSDataSetGenerator</Generator>
