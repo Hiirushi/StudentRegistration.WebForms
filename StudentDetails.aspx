@@ -42,11 +42,57 @@
             </div>
 
             <div class="card-body p-4">
-                <asp:Label
-                    ID="lblMessage"
-                    runat="server" />
+                <asp:Panel
+                    ID="pnlMessage"
+                    runat="server"
+                    Visible="false"
+                    CssClass="alert alert-dismissible fade show position-relative"
+                    role="alert">
+
+                    <asp:Label ID="lblMessage" runat="server" />
+
+                    <button type="button"
+                        class="btn-close position-absolute top-0 end-0"
+                        style="transform: scale(0.7);"
+                        data-bs-dismiss="alert">
+                    </button>
+
+                </asp:Panel>
 
                 <div class="table-responsive">
+
+                    <!-- Search -->
+                    <div class="d-flex gap-2 mb-3 align-items-center">
+                        <asp:TextBox
+                            ID="txtSearch"
+                            runat="server"
+                            CssClass="form-control"
+                            placeholder="Search students..." />
+
+                        <asp:DropDownList
+                            ID="ddlSearchCourse"
+                            runat="server"
+                            CssClass="form-select"
+                            Style="width: 200px;">
+                        </asp:DropDownList>
+
+                        <asp:Button
+                            ID="btnSearch"
+                            runat="server"
+                            Text="Search"
+                            CssClass="btn btn-primary"
+                            OnClick="btnSearch_Click"
+                            CausesValidation="false" />
+
+                        <asp:Button
+                            ID="btnClearSearch"
+                            runat="server"
+                            Text="Clear"
+                            CssClass="btn btn-outline-secondary"
+                            OnClick="btnClearSearch_Click"
+                            CausesValidation="false" />
+                    </div>
+
                     <asp:GridView
                         ID="gvStudents"
                         runat="server"

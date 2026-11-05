@@ -27,17 +27,67 @@ namespace StudentRegistration.WebForms
             if (!IsPostBack)
             {
                 LoadStudents();
+                LoadSearchCourses();
             }
         }
 
-        private void LoadStudents()
+        private void LoadStudents(string searchText = "", string courseID = "0")
         {
-            gvStudents.DataSource = studentService.GetAllStudents();
+            DataTable students = studentService.GetAllStudents();
+
+            DataView dataView = new DataView(students);
+
+            string filter = "";
+
+            if (!string.IsNullOrWhiteSpace(searchText))
+            { 
+                string search = searchText.Trim().Replace("'", "''");
+
+                filter =
+                    $"[Full Name] LIKE '%{search}%' OR " +
+                    $"[Address] LIKE '%{search}%' ";
+            }
+            if(courseID != "0")
+            {
+                if (!string.IsNullOrEmpty(filter)){
+                    filter = $"({filter}) AND ";
+                }
+
+                filter += $"[CourseID] = {Convert.ToInt32(courseID)}";
+            }
+            dataView.RowFilter = filter;
+            gvStudents.DataSource = dataView;
             gvStudents.DataBind();
+        }
+
+        private void LoadSearchCourses()
+        {
+            ddlSearchCourse.DataSource = courseRespository.GetAllCourses();
+
+            ddlSearchCourse.DataTextField = "CourseName";
+            ddlSearchCourse.DataValueField = "CourseID";
+
+            ddlSearchCourse.DataBind();
+
+            ddlSearchCourse.Items.Insert(0, new ListItem("All Courses", "0"));
+        }
+
+        protected void btnSearch_Click(object sender, EventArgs e)
+        {
+            LoadStudents(txtSearch.Text.Trim(), ddlSearchCourse.SelectedValue);
+        }
+
+        protected void btnClearSearch_Click(Object sender, EventArgs e)
+        {
+            txtSearch.Text = "";
+            ddlSearchCourse.SelectedValue = "0";
+            LoadStudents();
         }
 
         protected void gvStudents_RowCommand(object sender, GridViewCommandEventArgs e)
         {
+            pnlMessage.Visible = false;
+            lblMessage.Text = "";
             if (e.CommandName == "EditStudent")
             {
                 int studentID = Convert.ToInt32(e.CommandArgument);
@@ -126,8 +176,10 @@ namespace StudentRegistration.WebForms
 
                 studentService.UpdateStudent(student);
 
+                pnlMessage.Visible = true;
+                pnlMessage.CssClass = "alert alert-success alert-dismissible fade show position-relative";
+
                 lblMessage.Text = "Student updated successfully";
-                lblMessage.ForeColor = System.Drawing.Color.Green;
 
                 LoadStudents();
 
@@ -141,8 +193,10 @@ namespace StudentRegistration.WebForms
             }
             catch (Exception ex)
             {
+                pnlMessage.Visible = true;
+                pnlMessage.CssClass = "alert alert-danger alert-dismissible fade show position-relative";
+
                 lblMessage.Text = ex.Message;
-                lblMessage.ForeColor = System.Drawing.Color.Red;
 
                 ScriptManager.RegisterStartupScript(
                     this,
@@ -161,15 +215,17 @@ namespace StudentRegistration.WebForms
                 int studentID = Convert.ToInt32(hfDeleteStudentID.Value);
                 studentService.DeleteStudent(studentID);
 
+                pnlMessage.Visible = true;
+                pnlMessage.CssClass = "alert alert-success alert-dismissible fade show position-relative";
                 lblMessage.Text = "Student deleted successfully";
-                lblMessage.ForeColor = System.Drawing.Color.Green;
 
                 LoadStudents();
             }
             catch (Exception ex)
             {
+                pnlMessage.Visible = true;
+                pnlMessage.CssClass = "alert alert-danger alert-dismissible fade show position-relative";
                 lblMessage.Text = ex.Message;
-                lblMessage.ForeColor = System.Drawing.Color.Red;
 
                 ClientScript.RegisterStartupScript(
                     GetType(),
@@ -181,6 +237,8 @@ namespace StudentRegistration.WebForms
         }
         protected void btnGenerateReport_Click(object sender, EventArgs e)
         {
+            pnlMessage.Visible = false;
+            lblMessage.Text = "";
             try
             {
                 DataTable students = studentService.GetStudentsForReport();
