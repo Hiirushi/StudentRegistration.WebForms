@@ -14,9 +14,11 @@
         rel="stylesheet" />
 </head>
 <body>
-    <form id="form2" runat="server">
+    <form id="studentDetailsForm" runat="server">
+
         <asp:ScriptManager ID="ScriptManager1" runat="server">
         </asp:ScriptManager>
+
         <div class="container mt-5">
             <div class="d-flex align-items-center mb-4">
                 <h3>Student Details</h3>
@@ -39,7 +41,7 @@
                 </div>
             </div>
 
-            <div class="card-bodu p-4">
+            <div class="card-body p-4">
                 <asp:Label
                     ID="lblMessage"
                     runat="server" />
@@ -137,7 +139,7 @@
                                             ErrorMessage="First name is required"
                                             ForeColor="Red"
                                             Display="Dynamic"
-                                            ValidationGroup="EditStudent"/>
+                                            ValidationGroup="EditStudent" />
                                     </div>
 
                                     <div class="mb-3">
@@ -153,7 +155,7 @@
                                             ErrorMessage="Last name is required"
                                             ForeColor="Red"
                                             Display="Dynamic"
-                                            ValidationGroup="EditStudent"/>
+                                            ValidationGroup="EditStudent" />
                                     </div>
 
                                     <div class="mb-3">
@@ -224,14 +226,14 @@
                     </div>
 
                     <div class="modal fade" id="deleteStudentModal" tabindex="-1">
-                        <div class="modal-dialog modal-dialog-centered model-sm">
+                        <div class="modal-dialog modal-dialog-centered modal-sm">
                             <div class="modal-content">
 
                                 <div class="modal-header">
                                     <h5 class="modal-title">Confirm Delete</h5>
 
                                     <button
-                                        type="buton"
+                                        type="button"
                                         class="btn-close"
                                         data-bs-dismiss="modal">
                                     </button>
@@ -250,7 +252,7 @@
                                     </button>
 
                                     <asp:Button
-                                        ID="btnConfrimDelete"
+                                        ID="btnConfirmDelete"
                                         runat="server"
                                         Text="Delete"
                                         CssClass="btn btn-danger"

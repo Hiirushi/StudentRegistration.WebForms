@@ -17,21 +17,13 @@
         }
 
         .card {
-            max-width: 550px;
-            margin: 20px auto;
+            max-width: 500px;
+            margin: 0px auto;
             border-radius: 12px;
         }
 
         .card-body {
-            padding: 20px !important;
-        }
-
-        .form-control,
-        .form-select {
-            width: 100%;
-            padding: 7px 10px;
-            border-radius: 8px;
-            font-size: 14px;
+            padding: 15px !important;
         }
 
         .form-label {
@@ -41,44 +33,36 @@
         }
 
         .mb-3 {
-            margin-bottom: 10px !important;
-        }
-
-        .mb-4 {
-            margin-bottom: 12px !important;
+            margin-bottom: 7px !important;
         }
 
         .form-control,
         .form-select {
             width: 100%;
-            padding: 12px 14px;
-            border-radius: 10px;
+            padding: 7px 10px;
+            border-radius: 8px;
             border: 1px solid #ced4da;
-            font-size: 15px;
+            font-size: 14px;
         }
 
-            .form-control:focus,
-            .form-select:focus {
-                border-color: #86b7fe;
-                box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.15);
-            }
-
-        .form-label {
-            font-weight: 600;
-            margin-bottom: 8px;
+        .form-control:focus,
+        .form-select:focus {
+            border-color: #86b7fe;
+            box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.15);
         }
+
     </style>
 </head>
 <body>
-    <form id="form1" runat="server">
+    <form id="studentRegistrationForm" runat="server">
 
-        <div class="container mt-5 mb-5">
+        <div class="container mt-5 mb-3">
             <div class="card shadow-sm border rounded-3">
-                <div class="card-body p-3 text-center">
+                <div class="card-body p-2 text-center">
                     <h4 class="mb-1">Student Registration</h4>
                     <small>Enter the student details below</small>
                 </div>
-                <div class="p-5">
+                <div class="px-5 pt-2 pb-3">
                     <asp:Panel ID="pnlMessage" runat="server"
                         Visible="false"
                         CssClass="alert alert-dismissible fade show"
@@ -87,10 +71,11 @@
                         <asp:Label ID="lblMessage" runat="server" />
 
                         <button type="button" class="btn-close position-absolute top-0 end-0 m-2"
-    style="transform: scale(0.7);"
+                            style="transform: scale(0.7);"
                             data-bs-dismiss="alert">
                         </button>
                     </asp:Panel>
+
                     <div class="mb-3">
                         <asp:Label ID="lblFirstName" runat="server" Text="First Name:" CssClass="form-label" />
                         <asp:TextBox ID="txtFirstName" runat="server" CssClass="form-control" />
@@ -154,10 +139,18 @@
                             CssClass="btn btn-primary px-4" />
 
                         <asp:Button
+                            ID="btnClear"
+                            runat="server"
+                            Text="Reset"
+                            CssClass="btn btn-outline-primary px-4"
+                            CausesValidation="false"
+                            OnClick="btnReset_Click" />
+
+                        <asp:Button
                             ID="btnViewStudents"
                             runat="server"
                             Text="View Students"
-                            CssClass="btn btn-outline-primary px-4"
+                            CssClass="btn btn-success px-4"
                             CausesValidation="false"
                             OnClick="btnViewStudents_Click" />
                     </div>

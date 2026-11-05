@@ -15,13 +15,13 @@ namespace StudentRegistration.WebForms
     {
 
         /// <summary>
-        /// form1 control.
+        /// studentRegistrationForm control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlForm form1;
+        protected global::System.Web.UI.HtmlControls.HtmlForm studentRegistrationForm;
 
         /// <summary>
         /// pnlMessage control.
@@ -175,6 +175,15 @@ namespace StudentRegistration.WebForms
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnSave;
+
+        /// <summary>
+        /// btnClear control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnClear;
 
         /// <summary>
         /// btnViewStudents control.

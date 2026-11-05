@@ -94,5 +94,10 @@ namespace StudentRegistration.WebForms
                 lblMessage.Text = ex.Message;
             }
         }
+
+        public void btnReset_Click(object sender, EventArgs e)
+        {
+            ClearFields();
+        }
     }
 }

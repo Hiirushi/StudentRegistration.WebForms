@@ -14,6 +14,13 @@ namespace StudentRegistration.WebForms
     {
         private StudentService studentService;
         private CourseRespository courseRespository;
+        private void InitializeDependencies()
+        {
+            DbConnectionFactory dbConnectionFactory = new DbConnectionFactory();
+            StudentRepository studentRepository = new StudentRepository(dbConnectionFactory);
+            studentService = new StudentService(studentRepository);
+            courseRespository = new CourseRespository(dbConnectionFactory);
+        }
         protected void Page_Load(object sender, EventArgs e)
         {
             InitializeDependencies();
@@ -21,14 +28,6 @@ namespace StudentRegistration.WebForms
             {
                 LoadStudents();
             }
-        }
-
-        private void InitializeDependencies()
-        {
-            DbConnectionFactory dbConnectionFactory = new DbConnectionFactory();
-            StudentRepository studentRepository = new StudentRepository(dbConnectionFactory);
-            studentService = new StudentService(studentRepository);
-            courseRespository = new CourseRespository(dbConnectionFactory);
         }
 
         private void LoadStudents()

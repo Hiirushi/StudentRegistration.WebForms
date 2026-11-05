@@ -15,13 +15,13 @@ namespace StudentRegistration.WebForms
     {
 
         /// <summary>
-        /// form2 control.
+        /// studentDetailsForm control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlForm form2;
+        protected global::System.Web.UI.HtmlControls.HtmlForm studentDetailsForm;
 
         /// <summary>
         /// ScriptManager1 control.
@@ -49,6 +49,15 @@ namespace StudentRegistration.WebForms
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.Button btnGenerateReport;
+
+        /// <summary>
+        /// pnlMessage control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Panel pnlMessage;
 
         /// <summary>
         /// lblMessage control.
@@ -177,13 +186,13 @@ namespace StudentRegistration.WebForms
         protected global::System.Web.UI.WebControls.Button btnUpdateStudent;
 
         /// <summary>
-        /// btnConfrimDelete control.
+        /// btnConfirmDelete control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button btnConfrimDelete;
+        protected global::System.Web.UI.WebControls.Button btnConfirmDelete;
 
         /// <summary>
         /// hfDeleteStudentID control.
