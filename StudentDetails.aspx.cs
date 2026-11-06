@@ -4,6 +4,7 @@ using StudentRegistration.Models;
 using StudentRegistration.Repositories;
 using StudentRegistration.Services;
 using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Web.UI;
 using System.Web.UI.WebControls;
@@ -70,6 +71,46 @@ namespace StudentRegistration.WebForms
             ddlSearchCourse.DataBind();
 
             ddlSearchCourse.Items.Insert(0, new ListItem("All Courses", "0"));
+        }
+
+        protected void gvStudents_PageIndexChanging(object sender, GridViewPageEventArgs e)
+        {
+            gvStudents.PageIndex = e.NewPageIndex;
+            LoadStudents();
+        }
+
+        protected void gvStudents_RowCreated(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.Pager)
+            {
+                Repeater rptPages = (Repeater)e.Row.FindControl("rptPages");
+
+                List<int> pages = new List<int>();
+
+                for (int i=0; i< gvStudents.PageCount; i++)
+                {
+                    pages.Add(i);
+                }
+
+                rptPages.DataSource = pages;
+                rptPages.DataBind();
+
+                LinkButton btnPrevious = (LinkButton)e.Row.FindControl("btnPrevious");
+                LinkButton btnNext = (LinkButton)e.Row.FindControl("btnNext");
+
+                btnPrevious.Enabled = gvStudents.PageIndex > 0;
+                btnNext.Enabled = gvStudents.PageIndex < gvStudents.PageCount - 1;
+            }
+        }
+
+        protected void rptPages_ItemCommand(object sender, RepeaterCommandEventArgs e)
+        {
+            if (e.CommandName == "SelectPage")
+            {
+                int pageIndex = Convert.ToInt32(e.CommandArgument);
+                gvStudents.PageIndex = pageIndex;
+                LoadStudents();
+            }
         }
 
         protected void btnSearch_Click(object sender, EventArgs e)

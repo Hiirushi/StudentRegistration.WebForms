@@ -57,9 +57,9 @@
     <form id="studentRegistrationForm" runat="server">
 
         <div class="container mt-5 mb-3">
-            <div class="card shadow-sm border rounded-3">
+            <div class="card shadow-sm border rounded-3 pt-2 pb-2">
                 <div class="card-body p-2 text-center">
-                    <h4 class="mb-1">Student Registration</h4>
+                    <h4 class="mb-1 fw-bold">Student Registration</h4>
                     <small>Enter the student details below</small>
                 </div>
                 <div class="px-5 pt-2 pb-3">
@@ -98,7 +98,7 @@
                             ForeColor="Red" />
                     </div>
 
-                    <div class="mb-3">
+                    <div class="mb-4">
                         <asp:Label ID="lblAddress" runat="server" Text="Address:" CssClass="form-label" />
                         <asp:TextBox ID="txtAddress" TextMode="MultiLine" Rows="2" runat="server" CssClass="form-control" />
                     </div>
@@ -116,7 +116,7 @@
                             ForeColor="Red" />
                     </div>
 
-                    <div class="mb-4">
+                    <div class="mb-3">
                         <asp:Label ID="lblCourse" runat="server" Text="Course:" CssClass="form-label" />
                         <asp:DropDownList ID="ddlCourse" runat="server" CssClass="form-control">
                             <asp:ListItem Text="-- Select Course --" Value="0" />

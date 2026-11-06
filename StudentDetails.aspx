@@ -15,6 +15,20 @@
 
     <link rel="stylesheet"
       href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" />
+
+    <style>
+        /* Pagination container */
+        #gvStudents tr:last-child td {
+            padding: 10px;
+            text-align: center;
+        }
+
+        /* Disabled pagination buttons */
+        #gvStudents .aspNetDisabled {
+            opacity: 0.5;
+            pointer-events: none;
+        }
+    </style>
 </head>
 <body>
     <form id="studentDetailsForm" runat="server">
@@ -40,7 +54,8 @@
                         Text="Generate Report"
                         CssClass="btn btn-success"
                         CausesValidation="False"
-                        OnClick="btnGenerateReport_Click" />
+                        OnClick="btnGenerateReport_Click" 
+                        ToolTip="Generate student details report"/>
                 </div>
             </div>
 
@@ -101,6 +116,10 @@
                         runat="server"
                         AutoGenerateColumns="false"
                         DataKeyNames="StudentID"
+                        AllowPaging="true"
+                        PageSize="5"
+                        OnRowCreated="gvStudents_RowCreated"
+                        OnPageIndexChanging="gvStudents_PageIndexChanging"
                         OnRowCommand="gvStudents_RowCommand"
                         EmptyDataText="No students registered yet"
                         CssClass="table table-striped table-hover table-bordered align-middle"
@@ -151,6 +170,44 @@
                                 </ItemTemplate>
                             </asp:TemplateField>
                         </Columns>
+                        <PagerStyle HorizontalAlign="Center" />
+                        <PagerTemplate>
+                            <div class="d-flex justify-content-center align-items-center gap-2 mt-3">
+                                <asp:LinkButton
+                                    ID="btnPrevious"
+                                    runat="server"
+                                    Text="Previous"
+                                    CommandName="Page"
+                                    CommandArgument="Prev"
+                                    CssClass="btn btn-outline-primary btn-sm" />
+
+                                <asp:Repeater
+                                    ID="rptPages"
+                                    runat="server"
+                                    OnItemCommand="rptPages_ItemCommand" >
+
+                                    <ItemTemplate>
+                                        <asp:LinkButton
+                                            ID="btnPage"
+                                            runat="server"
+                                            Text='<%# Convert.ToInt32(Container.DataItem) + 1 %>'
+                                            CommandName="SelectPage"
+                                            CommandArgument='<%# Container.DataItem %>'
+                                            CssClass='<%# Convert.ToInt32(Container.DataItem) == gvStudents.PageIndex ? "btn btn-primary btn-sm" : "btn btn-outline-primary btn-sm" %>' />
+                                    </ItemTemplate>
+
+                                </asp:Repeater>
+
+                                <asp:LinkButton
+                                    ID="btnNext"
+                                    runat="server"
+                                    Text="Next"
+                                    CommandName="Page"
+                                    CommandArgument="Next"
+                                    CssClass="btn btn-outline-primary btn-sm" />
+                            </div>
+
+                        </PagerTemplate>
                     </asp:GridView>
 
                     <div class="mt-4">
